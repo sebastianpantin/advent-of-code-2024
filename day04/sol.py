@@ -29,3 +29,21 @@ lines.extend(["".join(i) for i in reverese_diagonals.values()])
 
 part1 = sum(line.count("XMAS") + line.count("SAMX") for line in lines)
 print("part 1:", part1)
+
+# Part 2
+
+rows, cols = len(data), len(data[0])
+
+count = 0
+
+_letters = {"M", "S"}
+for row in range(1, rows - 1):
+    for col in range(1, cols - 1):
+        if data[row][col] == "A":
+            if {data[row - 1][col - 1], data[row + 1][col + 1]} == _letters and {
+                data[row - 1][col + 1],
+                data[row + 1][col - 1],
+            } == _letters:
+                count += 1
+
+print("Part 2:", count)
